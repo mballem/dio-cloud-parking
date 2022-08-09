@@ -1,5 +1,7 @@
 package me.dio.parking.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import me.dio.parking.controller.mapper.ParkingMapper;
 import me.dio.parking.dto.ParkingCreateDTO;
 import me.dio.parking.dto.ParkingDTO;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Parking Controller", description = "Recursos do tipo Parking")
 @RestController
 @RequestMapping("parking")
 public class ParkingController {
@@ -23,6 +26,7 @@ public class ParkingController {
         this.parkingMapper = parkingMapper;
     }
 
+    @Operation(summary = "Find All parkings", description = "List of parkings")
     @GetMapping
     public ResponseEntity<List<ParkingDTO>> findAll() {
         List<Parking> parkings = parkingService.findAll();
@@ -30,6 +34,7 @@ public class ParkingController {
         return ResponseEntity.ok(dtoList);
     }
 
+    @Operation(summary = "Find parking by Id", description = "Return parking by id")
     @GetMapping("/{id}")
     public ResponseEntity<ParkingDTO> findAll(@PathVariable String id) {
         Parking parking = parkingService.findById(id);
@@ -37,6 +42,7 @@ public class ParkingController {
         return ResponseEntity.ok(dto);
     }
 
+    @Operation(summary = "Create a parking")
     @PostMapping
     public ResponseEntity<ParkingDTO> create(@RequestBody ParkingCreateDTO createDto) {
         Parking parking = parkingMapper.toParking(createDto);
