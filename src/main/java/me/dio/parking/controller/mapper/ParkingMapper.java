@@ -1,5 +1,6 @@
 package me.dio.parking.controller.mapper;
 
+import me.dio.parking.dto.ParkingCreateDTO;
 import me.dio.parking.dto.ParkingDTO;
 import me.dio.parking.model.Parking;
 import org.modelmapper.ModelMapper;
@@ -13,11 +14,15 @@ public class ParkingMapper {
 
     private static final ModelMapper MODEL_MAPPER = new ModelMapper();
 
-    public ParkingDTO parkingDTO(Parking parking) {
+    public ParkingDTO toParkingDTO(Parking parking) {
         return MODEL_MAPPER.map(parking, ParkingDTO.class);
     }
 
+    public Parking toParking(ParkingCreateDTO createDTO) {
+        return MODEL_MAPPER.map(createDTO, Parking.class);
+    }
+
     public List<ParkingDTO> toParkingDTOList(List<Parking> parkings) {
-        return parkings.stream().map(this::parkingDTO).collect(Collectors.toList());
+        return parkings.stream().map(this::toParkingDTO).collect(Collectors.toList());
     }
 }
