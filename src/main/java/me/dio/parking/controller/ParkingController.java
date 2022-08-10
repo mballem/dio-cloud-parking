@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Tag(name = "Parking Controller", description = "Recursos do tipo Parking")
@@ -69,4 +71,17 @@ public class ParkingController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Update a parking by id")
+    @PatchMapping("/{id}")
+    public ResponseEntity<ParkingDTO> exitDate(@PathVariable String id,
+                                               @RequestParam("day") Integer day,
+                                               @RequestParam("month") Integer month,
+                                               @RequestParam("year") Integer year,
+                                               @RequestParam("hour") Integer hour,
+                                               @RequestParam("minute") Integer minute) {
+
+        Parking newParking = parkingService.updateExitDate(id, day, month, year, hour, minute);
+        ParkingDTO parkingDto = parkingMapper.toParkingDTO(newParking);
+        return ResponseEntity.ok(parkingDto);
+    }
 }
