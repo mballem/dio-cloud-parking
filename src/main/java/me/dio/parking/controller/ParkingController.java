@@ -52,4 +52,21 @@ public class ParkingController {
                 .status(HttpStatus.CREATED)
                 .body(parkingDto);
     }
+
+    @Operation(summary = "Update a parking by id")
+    @PutMapping("/{id}")
+    public ResponseEntity<ParkingDTO> update(@RequestBody ParkingCreateDTO dto, @PathVariable String id) {
+        Parking parking = parkingMapper.toParking(dto);
+        Parking newParking = parkingService.update(id, parking);
+        ParkingDTO parkingDto = parkingMapper.toParkingDTO(newParking);
+        return ResponseEntity.ok(parkingDto);
+    }
+
+    @Operation(summary = "Delete parking by Id", description = "Remove parking by id")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        parkingService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
