@@ -1,12 +1,11 @@
 package me.dio.parking.service;
 
-import me.dio.parking.dto.ParkingDTO;
+import me.dio.parking.exception.ParkingNotFoundExeception;
 import me.dio.parking.model.Parking;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class ParkingService {
@@ -31,7 +30,11 @@ public class ParkingService {
     }
 
     public Parking findById(String id) {
-        return parkingMap.get(id);
+        Parking parking = parkingMap.get(id);
+        if (parking == null) {
+            throw new ParkingNotFoundExeception(id);
+        }
+        return parking;
     }
 
     public Parking create(Parking parking) {

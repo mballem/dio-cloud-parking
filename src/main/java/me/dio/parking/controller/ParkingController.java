@@ -36,7 +36,7 @@ public class ParkingController {
 
     @Operation(summary = "Find parking by Id", description = "Return parking by id")
     @GetMapping("/{id}")
-    public ResponseEntity<ParkingDTO> findAll(@PathVariable String id) {
+    public ResponseEntity<ParkingDTO> findById(@PathVariable String id) {
         Parking parking = parkingService.findById(id);
         ParkingDTO dto = parkingMapper.toParkingDTO(parking);
         return ResponseEntity.ok(dto);
