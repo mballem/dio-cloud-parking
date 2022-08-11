@@ -10,6 +10,6 @@ public class HelloController {
 
     @GetMapping
     public String hello() {
-        return "Hello Dio...";
+        return "<a href='https://parking-diome.herokuapp.com/swagger-ui/index.html'>PARKING API DOCUMENTATION</a>";
     }
 }
