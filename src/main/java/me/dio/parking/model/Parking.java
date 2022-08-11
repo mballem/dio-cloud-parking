@@ -1,9 +1,17 @@
 package me.dio.parking.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
-public class Parking {
+@Entity
+@Table(name = "parkings")
+public class Parking implements Serializable {
 
+    @Id
     private String id;
     private String license;
     private String state;
@@ -88,5 +96,18 @@ public class Parking {
 
     public void setBill(Double bill) {
         this.bill = bill;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Parking parking = (Parking) o;
+        return Objects.equals(id, parking.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
