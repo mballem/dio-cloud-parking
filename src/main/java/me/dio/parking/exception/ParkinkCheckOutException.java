@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-public class ParkinkExitDateException extends RuntimeException {
+public class ParkinkCheckOutException extends RuntimeException {
 
-    public ParkinkExitDateException() {
+    public ParkinkCheckOutException() {
         super("The check-out date must be later than the check-in date.");
     }
 }
