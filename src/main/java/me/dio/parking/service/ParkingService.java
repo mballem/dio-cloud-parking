@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 @Service
@@ -61,36 +60,17 @@ public class ParkingService {
         parkingMap.remove(id);
     }
 
-    public Parking updateExitDate(String id, int day, int month, int year, int hour, int minute) {
-        Parking parking = findById(id);
+    public Parking checkOut(String id, int day, int month, int year, int hour, int minute) {
         LocalDateTime exitDate = LocalDateTime.of(year, month, day, hour, minute);
 
+        Parking parking = findById(id);
         if (exitDate.isBefore(parking.getEntryDate())) {
             throw new ParkinkExitDateException();
         }
 
-        parking.setExitDate(LocalDateTime.of(year, month, day, hour, minute));
-
-        Double bill = bill(parking.getEntryDate(), parking.getExitDate());
-        parking.setBill(bill);
+        parking.setExitDate(exitDate);
+        parking.setBill(ParkingCheckOutService.getBill(parking));
 
         return parking;
-    }
-
-    /**
-     * Até os primeiros 25 minutos: extraValue
-     * A partir dos 25 minutos iniciais: totalDeMinutos * minuteValue
-     * @param entryDate hora inicial
-     * @param exitDate hora final
-     * @return um double contendo o valor total do período estacionado.
-     */
-    private Double bill(LocalDateTime entryDate, LocalDateTime exitDate) {
-        long totalDeMinutos = ChronoUnit.MINUTES.between(entryDate, exitDate);
-
-        if (totalDeMinutos <= 25) {
-            return this.extraValue;
-        }
-
-        return totalDeMinutos * this.minuteValue;
     }
 }

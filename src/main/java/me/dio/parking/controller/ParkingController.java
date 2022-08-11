@@ -78,7 +78,7 @@ public class ParkingController {
                                                @RequestParam("hour") Integer hour,
                                                @RequestParam("minute") Integer minute) {
 
-        Parking newParking = parkingService.updateExitDate(id, day, month, year, hour, minute);
+        Parking newParking = parkingService.checkOut(id, day, month, year, hour, minute);
         ParkingDTO parkingDto = parkingMapper.toParkingDTO(newParking);
         return ResponseEntity.ok(parkingDto);
     }
