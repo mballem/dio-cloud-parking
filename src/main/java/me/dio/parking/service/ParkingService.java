@@ -12,11 +12,6 @@ import java.util.*;
 @Service
 public class ParkingService {
 
-    @Value("${minute.value}")
-    private Double minuteValue;
-    @Value("${extra.value}")
-    private Double extraValue;
-
     private static Map<String, Parking> parkingMap = new HashMap<>();
 
     private static String getUUID() {
