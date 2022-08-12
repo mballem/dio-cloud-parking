@@ -69,7 +69,7 @@ public class ParkingController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Update a parking by id")
+    @Operation(summary = "Update a parking by id ans insert a check-out date")
     @PatchMapping("/{id}")
     public ResponseEntity<ParkingDTO> exitDate(@PathVariable String id,
                                                @RequestParam("day") Integer day,
