@@ -1,5 +1,6 @@
 package me.dio.parking.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,14 +12,21 @@ import java.util.Objects;
 @Table(name = "parkings")
 public class Parking implements Serializable {
 
-    @Id
+    @Id @Column(name = "ID_PARKING", length = 36)
     private String id;
+    @Column(name = "LICENSE", length = 8)
     private String license;
+    @Column(name = "STATE", length = 2)
     private String state;
+    @Column(name = "MODEL", length = 50)
     private String model;
+    @Column(name = "COLOR", length = 50)
     private String color;
+    @Column(name = "ENTRY_DATE")
     private LocalDateTime entryDate;
+    @Column(name = "EXIT_DATE")
     private LocalDateTime exitDate;
+    @Column(name = "BILL")
     private Double bill;
 
     public Parking(String id, String license, String state, String model, String color, LocalDateTime entryDate) {
