@@ -1,1 +1,1 @@
-web java -Dspring.profiles.active=prod -Dserver.port=$PORT $JAVA_OPTS -jar target/cloud-parking-0.0.1-SNAPSHOT.jar
+web java -DskipTests=false -Dspring.profiles.active=prod -Dserver.port=$PORT $JAVA_OPTS -jar target/cloud-parking-0.0.1-SNAPSHOT.jar
