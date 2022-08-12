@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 		<springdoc-openapi-ui.version>1.6.0</springdoc-openapi-ui.version>
 		<modelmapper.version>2.4.5</modelmapper.version>
+		<maven.test.skip>false</maven.test.skip>
 	</properties>
 	<dependencies>
 		<dependency>
