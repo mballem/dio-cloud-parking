@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @SecurityRequirement(name = "parkingapi")
@@ -46,7 +47,7 @@ public class ParkingController {
 
     @Operation(summary = "Create a parking")
     @PostMapping
-    public ResponseEntity<ParkingDTO> create(@RequestBody ParkingCreateDTO createDto) {
+    public ResponseEntity<ParkingDTO> create(@Valid @RequestBody ParkingCreateDTO createDto) {
         Parking parking = parkingMapper.toParking(createDto);
         Parking newParking = parkingService.create(parking);
         ParkingDTO parkingDto = parkingMapper.toParkingDTO(newParking);
