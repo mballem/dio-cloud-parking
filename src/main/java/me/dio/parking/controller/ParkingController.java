@@ -1,6 +1,7 @@
 package me.dio.parking.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.dio.parking.controller.mapper.ParkingMapper;
 import me.dio.parking.dto.ParkingCreateDTO;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "parkingapi")
 @Tag(name = "Parking Controller", description = "Recursos do tipo Parking")
 @RestController
 @RequestMapping("parking")
