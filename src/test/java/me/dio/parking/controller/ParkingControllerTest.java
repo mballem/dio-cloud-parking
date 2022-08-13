@@ -18,6 +18,9 @@ import org.springframework.test.context.jdbc.SqlConfig;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ParkingControllerTest {
 
+    final String password = "123456";
+    final String username = "user";
+
     @LocalServerPort
     private int randomPort;
 
@@ -29,6 +32,7 @@ class ParkingControllerTest {
     @Test
     void whenFindAllThenCheckResult() {
         RestAssured.given()
+                .auth().basic(this.username, this.password)
                 .when()
                 .get("/parking")
                 .then()
@@ -42,6 +46,7 @@ class ParkingControllerTest {
     public void whenFindByIdChekedOk() {
         final String id = "6c73b38d157b4312a41492bd28fb6599";
         RestAssured.given()
+                .auth().basic(this.username, this.password)
                 .when()
                 .get("/parking/{id}", id)
                 .then()
@@ -59,6 +64,7 @@ class ParkingControllerTest {
         createDto.setState("RJ");
 
         RestAssured.given()
+                .auth().basic(this.username, this.password)
                 .when()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(createDto)
@@ -72,6 +78,7 @@ class ParkingControllerTest {
     void whenDeleteCheckWasRemoved() {
         final String id = "e07d1424c1e14410839b7106c2bbc132";
         RestAssured.given()
+                .auth().basic(this.username, this.password)
                 .when()
                 .delete("/parking/{id}", id)
                 .then()
@@ -90,6 +97,7 @@ class ParkingControllerTest {
         dto.setState("SC");
 
         RestAssured.given()
+                .auth().basic(this.username, this.password)
                 .when()
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .body(dto)
@@ -113,6 +121,7 @@ class ParkingControllerTest {
         final String exitDate = "10/08/2022 15:30";
 
         RestAssured.given()
+                .auth().basic(this.username, this.password)
                 .when()
                 .param("day", 10)
                 .param("month", 8)
