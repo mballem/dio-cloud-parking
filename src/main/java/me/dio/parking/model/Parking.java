@@ -12,7 +12,8 @@ import java.util.Objects;
 @Table(name = "parkings")
 public class Parking implements Serializable {
 
-    @Id @Column(name = "ID_PARKING", length = 36)
+    @Id
+    @Column(name = "ID_PARKING", length = 36)
     private String id;
     @Column(name = "LICENSE", length = 8)
     private String license;
