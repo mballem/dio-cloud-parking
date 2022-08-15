@@ -1,15 +1,23 @@
 package me.dio.parking.dto;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class ParkingCreateDTO {
 
+    @NotNull
     @Size(min = 8, max = 8)
     private String license;
+
+    @NotNull
     @Size(min = 2, max = 2)
     private String state;
+
+    @NotNull
     @Size(min = 2, max = 50)
     private String model;
+
+    @NotNull
     @Size(min = 3, max = 50)
     private String color;
 
