@@ -20,7 +20,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @Sql(value = "/sql/data-parking.sql")
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PostgresBaseTestContainer {
+public class PostgresBaseTest {
 
     final String password = "123456";
     final String username = "user";
