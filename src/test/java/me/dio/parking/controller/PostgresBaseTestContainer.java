@@ -51,7 +51,6 @@ public abstract class PostgresBaseTestContainer {
                 .when()
                 .get("/parking")
                 .then()
-                //.body("license[0]", Matchers.equalTo("DMS-1111"));
                 .statusCode(HttpStatus.OK.value())
                 .extract().response().body().prettyPrint()
         ;
