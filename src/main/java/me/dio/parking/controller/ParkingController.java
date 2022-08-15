@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import me.dio.parking.controller.mapper.ParkingMapper;
 import me.dio.parking.dto.ParkingCreateDTO;
 import me.dio.parking.dto.ParkingDTO;
+import me.dio.parking.dto.ParkingUpdateDTO;
 import me.dio.parking.model.Parking;
 import me.dio.parking.service.ParkingService;
 import org.springframework.http.HttpStatus;
@@ -58,7 +59,8 @@ public class ParkingController {
 
     @Operation(summary = "Update a parking by id")
     @PutMapping("/{id}")
-    public ResponseEntity<ParkingDTO> update(@RequestBody ParkingCreateDTO dto, @PathVariable String id) {
+    public ResponseEntity<ParkingDTO> update(@Valid @RequestBody ParkingUpdateDTO dto,
+                                             @PathVariable String id) {
         Parking parking = parkingMapper.toParking(dto);
         Parking newParking = parkingService.update(id, parking);
         ParkingDTO parkingDto = parkingMapper.toParkingDTO(newParking);
