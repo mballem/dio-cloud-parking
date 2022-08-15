@@ -20,6 +20,8 @@ public class SpringSecurityConfig {
         return http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/images/**", "/js/**", "/webjars/**").permitAll()
+                .antMatchers("/*.js", "/*.css", "/*.ico", "/*.png").permitAll()
                 .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/swagger-resources/**").permitAll()
                 .antMatchers("/parking-openapi.html", "/parking-openapi/**", "/v3/api-docs").permitAll()
                 .antMatchers("/").permitAll()
@@ -28,13 +30,6 @@ public class SpringSecurityConfig {
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().build();
-    }
-
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring()
-                .antMatchers("/images/**", "/js/**", "/webjars/**")
-                .antMatchers("/*.js", "/*.css", "/*.ico", "/*.png");
     }
 
     @Bean
