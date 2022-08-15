@@ -11,10 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-
+/*
 @Sql(value = {"/sql/schema-parking.sql", "/sql/data-parking.sql"},
         config = @SqlConfig(transactionMode = SqlConfig.TransactionMode.ISOLATED)
-)
+)*/
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class ParkingControllerTest {
 
