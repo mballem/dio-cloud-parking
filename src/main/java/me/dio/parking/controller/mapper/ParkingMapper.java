@@ -2,6 +2,7 @@ package me.dio.parking.controller.mapper;
 
 import me.dio.parking.dto.ParkingCreateDTO;
 import me.dio.parking.dto.ParkingDTO;
+import me.dio.parking.dto.ParkingUpdateDTO;
 import me.dio.parking.model.Parking;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,10 @@ public class ParkingMapper {
 
     public Parking toParking(ParkingCreateDTO createDTO) {
         return MODEL_MAPPER.map(createDTO, Parking.class);
+    }
+
+    public Parking toParking(ParkingUpdateDTO updateDTO) {
+        return MODEL_MAPPER.map(updateDTO, Parking.class);
     }
 
     public List<ParkingDTO> toParkingDTOList(List<Parking> parkings) {
