@@ -20,12 +20,12 @@ Heroku: https://parking-diome.herokuapp.com/parking-openapi.html
 Localhost: http://localhost:8080/parking-openapi.html
 ```
 
-## Autenticação:
+## 🔒 Autenticação:
 ```
 username = user
 password = 123456
 ```
-## 🛠 Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 * **Java 11**
 * **Maven**
 * **Spring Boot 2.7.2**
